@@ -1,0 +1,110 @@
+<div
+    class="flex flex-col min-h-screen bg-gradient-to-r dark:from-slate-700 dark:to-slate-900 from-slate-300 to-slate-400">
+    <div class="flex flex-col justify-center items-center bg-gray-100 dark:bg-slate-600 h-1/6 p-8">
+        <table class="w-full text-center">
+            <tr>
+                <th class="text-gray-500 dark:text-slate-50 text-2xl py-2">My to dos</th>
+            </tr>
+        </table>
+        <app-add-task></app-add-task>
+    </div>
+
+    <div class="flex justify-center items-center py-8">
+        <div
+            class="bg-gray-100 dark:bg-slate-600 rounded-md w-11/12 h-auto grid gap-4 p-8 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+            <div *ngIf="tasks.length === 0" class="m-4 italic"
+                >
+                <p class="py-2">
+                    No tienes tareas pendientes, prueba añadir más.
+                </p>
+                <div class="text-center p-4"
+                    [ngClass]="{ 'bg-indigo-500 dark:bg-indigo-900': true, 'bg-sky-500 dark:bg-sky-900': false }">
+                    <div class="flex justify-between pb-4">
+                        <p class="text-xl items-baseline text-gray-100 dark:text-gray-50">Tarea de ejemplo</p>
+                        <button class="bg-transparent border-none">
+                            <svg data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"
+                                class="w-12 h-12">
+                                <path class="dark:fill-gray-50 fill-gray-900"
+                                    d="M64 21.433A42.567 42.567 0 1 0 106.567 64 42.615 42.615 0 0 0 64 21.433zm0 80.912A38.345 38.345 0 1 1 102.345 64 38.389 38.389 0 0 1 64 102.345z" />
+                                <path class="dark:fill-gray-50 fill-gray-900"
+                                    d="M79.459 48.3a2.11 2.11 0 0 0-2.985 0L64 60.778 51.523 48.3a2.111 2.111 0 1 0-2.985 2.985l12.476 12.478-12.473 12.474a2.111 2.111 0 1 0 2.985 2.985L64 66.748l12.474 12.474a2.111 2.111 0 0 0 2.985-2.985L66.984 63.763l12.475-12.477a2.11 2.11 0 0 0 0-2.986z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-auto">
+                        <label for="toggle-test" class="flex items-center cursor-pointer select-none">
+                            <div class="relative">
+                                <input type="checkbox" checked id="toggle-test" class="peer sr-only" />
+                                <div class="block h-8 w-14 rounded-full bg-slate-600"></div>
+                                <div
+                                    class="absolute w-6 h-6 transition peer-checked:bg-indigo-300 rounded-full left-1 top-1 peer-checked:translate-x-full bg-sky-300">
+                                </div>
+                            </div>
+                            <span class="ml-3 text-gray-50">{{ true ? 'Hecha' : 'Pendiente' }}</span>
+                        </label>
+                    </div>
+                </div>
+                <!-- <div class="text-center p-4"
+                    [ngClass]="{ 'bg-indigo-500 dark:bg-indigo-900': false, 'bg-sky-500 dark:bg-sky-900': true }">
+                    <div class="flex justify-between pb-4">
+                        <p class="text-xl items-baseline text-gray-100 dark:text-gray-50">Tarea de ejemplo 2</p>
+                        <button class="bg-transparent border-none">
+                            <svg data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"
+                                class="w-12 h-12">
+                                <path class="dark:fill-gray-50 fill-gray-900"
+                                    d="M64 21.433A42.567 42.567 0 1 0 106.567 64 42.615 42.615 0 0 0 64 21.433zm0 80.912A38.345 38.345 0 1 1 102.345 64 38.389 38.389 0 0 1 64 102.345z" />
+                                <path class="dark:fill-gray-50 fill-gray-900"
+                                    d="M79.459 48.3a2.11 2.11 0 0 0-2.985 0L64 60.778 51.523 48.3a2.111 2.111 0 1 0-2.985 2.985l12.476 12.478-12.473 12.474a2.111 2.111 0 1 0 2.985 2.985L64 66.748l12.474 12.474a2.111 2.111 0 0 0 2.985-2.985L66.984 63.763l12.475-12.477a2.11 2.11 0 0 0 0-2.986z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-auto">
+                        <label for="toggle-test1" class="flex items-center cursor-pointer select-none">
+                            <div class="relative">
+                                <input type="checkbox" id="toggle-test1" class="peer sr-only" />
+                                <div class="block h-8 w-14 rounded-full bg-slate-600"></div>
+                                <div
+                                    class="absolute w-6 h-6 transition peer-checked:bg-indigo-300 rounded-full left-1 top-1 peer-checked:translate-x-full bg-sky-300">
+                                </div>
+                            </div>
+                            <span class="ml-3 text-gray-50">{{ false ? 'Hecha' : 'Pendiente' }}</span>
+                        </label>
+                    </div>
+                </div> -->
+            </div>
+            <div *ngFor="let task of tasks" class="m-4">
+                <div class="text-center p-4"
+                    [ngClass]="{ 'bg-indigo-500 dark:bg-indigo-900': task.completed, 'bg-sky-500 dark:bg-sky-900': !task.completed }">
+                    <div class="flex justify-between pb-4">
+                        <p class="text-xl items-baseline text-gray-100 dark:text-gray-50">{{ task.name }}</p>
+                        <button (click)="deleteTask(task)" class="bg-transparent border-none">
+                            <svg data-name="Layer 3" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"
+                                class="w-12 h-12">
+                                <path class="dark:fill-gray-50 fill-gray-900"
+                                    d="M64 21.433A42.567 42.567 0 1 0 106.567 64 42.615 42.615 0 0 0 64 21.433zm0 80.912A38.345 38.345 0 1 1 102.345 64 38.389 38.389 0 0 1 64 102.345z" />
+                                <path class="dark:fill-gray-50 fill-gray-900"
+                                    d="M79.459 48.3a2.11 2.11 0 0 0-2.985 0L64 60.778 51.523 48.3a2.111 2.111 0 1 0-2.985 2.985l12.476 12.478-12.473 12.474a2.111 2.111 0 1 0 2.985 2.985L64 66.748l12.474 12.474a2.111 2.111 0 0 0 2.985-2.985L66.984 63.763l12.475-12.477a2.11 2.11 0 0 0 0-2.986z" />
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-center mt-auto">
+                        <label for="toggle-{{ task.id }}" class="flex items-center cursor-pointer select-none">
+                            <div class="relative">
+                                <input type="checkbox" id="toggle-{{ task.id }}" class="peer sr-only"
+                                    [checked]="task.completed" (change)="toggleTaskCompletion(task)" />
+                                <div class="block h-8 w-14 rounded-full bg-slate-600"></div>
+                                <div
+                                    class="absolute w-6 h-6 transition peer-checked:bg-indigo-300 rounded-full left-1 top-1 peer-checked:translate-x-full bg-sky-300">
+                                </div>
+                            </div>
+                            <span class="ml-3 text-gray-50">{{ task.completed ? 'Hecha' : 'Pendiente' }}</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<button class="flex items-center space-x-2 rounded-sm bg-emerald-400 dark:bg-emerald-600 p-2" (click)="openModal()">
+    <p class="m-0 dark:text-gray-50">Añadir</p>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" xml:space="preserve" class="w-4 h-4">
+        <path class="dark:fill-gray-50 fill-gray-800"
+            d="M128 63.954c0 2.006-.797 3.821-2.136 5.127-1.308 1.337-3.125 2.133-5.166 2.133H71.302v49.356c0 4.012-3.284 7.292-7.302 7.292-2.009 0-3.827-.828-5.166-2.134-1.308-1.337-2.136-3.152-2.136-5.159V71.214H7.302c-4.05 0-7.302-3.248-7.302-7.26 0-2.006.797-3.853 2.136-5.159a7.279 7.279 0 0 1 5.166-2.134h49.395V7.306c0-4.012 3.284-7.26 7.302-7.26 2.009 0 3.827.828 5.166 2.133a7.238 7.238 0 0 1 2.136 5.127v49.356h49.395A7.276 7.276 0 0 1 128 63.954z" />
+    </svg>
+</button>
+
+<div *ngIf="isModalOpen" (click)="closeModal($event)"
+    class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center z-50">
+    <div (click)="stopPropagation($event)" class="bg-gradient-to-t dark:from-slate-700 dark:to-slate-900 from-slate-300 to-slate-400 p-6 rounded-lg shadow-lg w-96">
+        <h2 class="text-xl mb-4 text-gray-50">Agregar tarea</h2>
+        <form (submit)="addTask()">            
+            <div class="relative">
+                <input type="text" id="taskName" [(ngModel)]="taskName" name="taskName" required
+                    class="peer p-2 my-2 w-full border-2 rounded-xl border-gray-950 text-gray-900 focus:outline-none focus:border-white" />
+                <label for="taskName" for="taskName"
+                    class="absolute left-0 my-4 mx-2 m-0 border-spacing-0 p-0 text-gray-500 transition-all peer-placeholder-shown:translate-y-0 peer-placeholder-shown:text-gray-500 peer-focus:-translate-y-8 peer-focus:text-gray-50">
+                    Hacer...
+                </label>
+            </div>
+            <div class="flex justify-between pt-4">
+                <button type="submit"
+                    class="bg-emerald-400 hover:bg-emerald-600 text-gray-50 px-4 py-2 rounded-lg">Agregar</button>
+                <button type="button" (click)="closeModal()"
+                    class="bg-red-400 hover:bg-red-600 text-gray-50 px-4 py-2 rounded-lg">Cancelar</button>
+            </div>
+
+
+
+        </form>
+    </div>
+</div>
